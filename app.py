@@ -1,6 +1,7 @@
 import streamlit as st
 from gtts import gTTS
 import uuid
+import os
 
 from loader import file_loader
 from splitter import doc_splitter
@@ -33,8 +34,8 @@ if uploaded_file:
     chunks = doc_splitter(docs)
 
     persist_dir = f"vector_db/{user_id}"
-
-    create_vector_store(chunks, persist_dir)
+    if not os.path.exists(persist_dir):
+        create_vector_store(chunks, persist_dir)
     
     retriever = get_retriever(persist_dir)
 
