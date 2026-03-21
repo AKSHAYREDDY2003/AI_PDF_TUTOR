@@ -37,7 +37,8 @@ def run_rag(inputs):
     context=format_docs(best_docs)
     return context
 from operator import itemgetter
-chain = {'context': run_rag , 'question': itemgetter('question')}  | prompt_template | model 
+chain = {'context': run_rag , 'question': itemgetter('question'),'retriever': itemgetter("retriever"),
+        'history': itemgetter("history")   }  | prompt_template | model 
 
 chain_with_history = RunnableWithMessageHistory(
     chain,
