@@ -7,9 +7,7 @@ from loader import file_loader
 from splitter import doc_splitter
 from vector_store import create_vector_store, get_retriever
 from rag_pipeline import chain_with_history
-from langchain_core.output_parsers import StrOutputParser
 
-parser = StrOutputParser()
 
 st.title("📄 AI PDF Tutor")
 
@@ -25,20 +23,25 @@ uploaded_file = st.file_uploader("Upload your PDF", type="pdf")
 # check if pdf uploaded
 if uploaded_file:
 
-    st.success("PDF uploaded successfully")
+    if "processed" not in st.session_state:
 
-    with open("temp.pdf", "wb") as f:
-        f.write(uploaded_file.getvalue())
+        st.success("PDF uploaded successfully")
 
-    docs = file_loader("temp.pdf")
-    chunks = doc_splitter(docs)
+        with open("temp.pdf", "wb") as f:
+            f.write(uploaded_file.getvalue())
 
-    persist_dir = f"vector_db/{user_id}"
-    if not os.path.exists(persist_dir):
+        docs = file_loader("temp.pdf")
+        chunks = doc_splitter(docs)
+
+        persist_dir = f"vector_db/{user_id}"
         create_vector_store(chunks, persist_dir)
-    
-    retriever = get_retriever(persist_dir)
 
+        st.session_state.processed = True
+        st.session_state.persist_dir = persist_dir
+
+    persist_dir = st.session_state.persist_dir
+    retriever = get_retriever(persist_dir)
+    
     # show question box only after pdf upload
     question = st.chat_input("Ask a question about the PDF")
 
