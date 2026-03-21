@@ -36,7 +36,7 @@ If the requested topic is not present in the provided context, respond:
 Context:
 {context}
 """),
-MessagesPlaceholder(variable_name='history',n_messages=8),      
+MessagesPlaceholder(variable_name='history'),      
 HumanMessagePromptTemplate.from_template("""
 Question: {question}
 Answer:
