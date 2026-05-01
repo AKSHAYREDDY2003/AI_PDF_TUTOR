@@ -2,7 +2,7 @@ def format_docs(docs):
     return '\n\n'.join(doc.page_content for doc in docs)
 
     
-from langchain_core.runnables import RunnableWithMessageHistory
+from langchain.memory import RunnableWithMessageHistory
 from langchain_core.chat_history import InMemoryChatMessageHistory
 
 
