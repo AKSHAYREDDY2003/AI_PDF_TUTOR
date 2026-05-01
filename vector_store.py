@@ -9,7 +9,7 @@ def create_vector_store(chunks, persist_dir):
     ]
 
     vectordb = Chroma.from_documents(
-        documents=chunks,
+        documents=clean_chunks,
         embedding=embeddings,
         persist_directory=persist_dir
     )
