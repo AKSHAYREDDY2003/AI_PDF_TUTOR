@@ -6,12 +6,12 @@ def doc_splitter(documents):
     chunks = text_splitter.split_documents(documents)
 
     # ✅ CLEAN chunks (IMPORTANT FIX)
-    clean_chunks = [
-        c for c in chunks
-        if c and c.page_content and c.page_content.strip()
-    ]
+    clean_chunks = []
+    for c in chunks:
+        if c and c.page_content and c.page_content.strip():
+            clean_chunks.append(c)
 
-    print("Total chunks:", len(chunks))
-    print("Clean chunks:", len(clean_chunks))
+    print("Before:", len(chunks))
+    print("After :", len(clean_chunks))
 
     return clean_chunks
