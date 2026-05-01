@@ -9,3 +9,5 @@ chromadb==0.4.24
 pypdf==4.2.0
 gtts==2.5.1
 
+rich==13.9.4
+
