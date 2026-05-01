@@ -3,6 +3,11 @@ from embeddings import embeddings
 
 def create_vector_store(chunks, persist_dir):
 
+    clean_chunks = [
+        c for c in chunks
+        if c and c.page_content and c.page_content.strip()
+    ]
+
     vectordb = Chroma.from_documents(
         documents=chunks,
         embedding=embeddings,
