@@ -1,11 +1,12 @@
 streamlit==1.32.2
+
 langchain==0.2.14
-langchain-core==0.2.30
 langchain-community==0.2.12
+langchain-core==0.2.30
 langchain-google-genai==1.0.8
+
 chromadb==0.4.24
-protobuf==3.20.3
-pydantic==2.7.4
-pypdf==4.2.0
-gtts==2.5.1
+
+pypdf
+gtts
 
