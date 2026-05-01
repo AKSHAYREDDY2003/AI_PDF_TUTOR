@@ -1,10 +1,10 @@
-streamlit==1.31.1
+streamlit
 
-langchain==0.2.14
-langchain-community==0.2.12
-langchain-google-genai==0.0.11
+langchain
+langchain-community
+langchain-google-genai
 
-chromadb==0.4.24
+chromadb
 
-pypdf==4.2.0
-gtts==2.5.1
+pypdf
+gtts
