@@ -1,7 +1,3 @@
-from reranker import rerank_docs
-
-
-
 def format_docs(docs):
     return '\n\n'.join(doc.page_content for doc in docs)
 
@@ -31,10 +27,7 @@ def run_rag(inputs):
     question = inputs["question"]
     retriever = inputs["retriever"]
     docs=retriever.invoke(question)
-    
-    best_docs=rerank_docs(question,docs)
-    
-    context=format_docs(best_docs)
+    context=format_docs(docs)
     return context
 from operator import itemgetter
 chain = {'context': run_rag , 'question': itemgetter('question'),
